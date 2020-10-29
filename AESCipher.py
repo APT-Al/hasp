@@ -25,25 +25,23 @@ class AESCipher(object):
         self.block_size = 32
         self.key = hashlib.sha256(key).digest()
 
-    def encrypt(self, raw):
+    def encrypt(self, iv, raw):
         raw = self._pad(raw)
-        iv = Random.new().read(AES.block_size)
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
-        return base64.b64encode(iv + cipher.encrypt(raw.encode()))
+        return cipher.encrypt(raw)
 
-    def decrypt(self, enc):
-        enc = base64.b64decode(enc)
-        iv = enc[:AES.block_size]
+    def decrypt(self, iv, enc):
         cipher = AES.new(self.key, AES.MODE_CBC, iv)
-        return self._unpad(cipher.decrypt(enc[AES.block_size:])).decode('utf-8')
+        return cipher.decrypt(enc)
 
-    def _pad(self, s):
-        return s + (self.block_size - len(s) % self.block_size) * chr(self.block_size - len(s) % self.block_size)
+    def _pad(self, chunk):
+        # if len(chunk) == 0:
+        #     return chunk
+        # elif len(chunk) % self.block_size != 0:
+        return chunk + b' ' * (self.block_size - len(chunk) % self.block_size)
 
-    @staticmethod
-    def _unpad(s):
-        return s[:-ord(s[len(s)-1:])]
-
+    def generate_iv():
+        return Random.new().read(AES.block_size)
 
     def generate_key(bits, encode=False):
         generated = Random.OSRNG.posix.DevURandomRNG()
