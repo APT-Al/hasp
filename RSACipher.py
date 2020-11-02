@@ -14,7 +14,7 @@ class RSACipher(object):
         self.cipher = PKCS1_v1_5.new(_key_object)
 
     def encrypt(self, plain_text):
-        return self.cipher.encrypt(plain_text.encode())
+        return self.cipher.encrypt(plain_text)
 
     def decrypt(self, cipher_text):
-        return self.cipher.decrypt(cipher_text,None).decode()
+        return self.cipher.decrypt(cipher_text,None)

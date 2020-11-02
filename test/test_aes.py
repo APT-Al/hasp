@@ -6,17 +6,8 @@ from AESCipher import AESCipher
 import base64
 import hashlib
 
-def unpad(raw):
-    i=0
-    for bayt in raw[::-1]:
-        if bayt == b"\x90":
-            i+=1
-        else:
-            break
-    return raw[:-i]
-
-password = hashlib.sha256(b"okanalan").digest()
-iv = AESCipher.generate_iv()
+password = AESCipher.generate_key(16)
+iv = AESCipher.generate_key(16)
 # print("KEY ::", key)
 cipher = AESCipher(password)
 
@@ -33,7 +24,7 @@ cipher = AESCipher(password)
 #     print("STRING ENCRYPTION TEST IS FAILED!")
 
 
-inf = "test_file.txt"
+inf = "test_image.jpeg"
 midf = "cogii.enc"
 outf = "cikti_"+inf
 chunk_size = 16*1024 # 16 byte

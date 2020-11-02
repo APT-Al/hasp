@@ -1,6 +1,3 @@
-whoweare = "APT-Al"
-
-
 rsa_public_key = "-----BEGIN RSA PUBLIC KEY-----\n\
 MIICCgKCAgEAu25ITaLSaYnlJ88w8nWdoJF/q4nrtqH9Iajw1CWlEiSTlUqMy0x+\n\
 3uDC29Afv246gSad+fXvS0V22mhnv9ByVk8mTBQCCx7ytR0wLGGSkYl1eSsPAmvV\n\

@@ -1,5 +1,6 @@
 import base64
 import hashlib
+from random import randint
 from Crypto import Random
 from Crypto.Cipher import AES
 
@@ -40,14 +41,16 @@ class AESCipher(object):
         # elif len(chunk) % self.block_size != 0:
         return chunk + b' ' * (self.block_size - len(chunk) % self.block_size)
 
-    def generate_iv():
-        return Random.new().read(AES.block_size)
-
-    def generate_key(bits, encode=False):
-        generated = Random.OSRNG.posix.DevURandomRNG()
-        content = generated.read(bits)
+    def generate_key(bytess):
+        _key=""
+        pool = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        for _ in range(bytess):
+            _key += pool[randint(0,len(pool)-1)]
+        _key = _key.encode("utf-8")
         
-        if(encode):
-            return base64.b64encode(content)
+        # print("KEY:",_key,"::",len(_key), ":: type->",type(_key))
+        # _temp = Random.new().read(bytess)
+        # print("TEMP:",_temp,"::",len(_temp), ":: type->",type(_temp))
 
-        return content
+        return _key
+        #return _temp
