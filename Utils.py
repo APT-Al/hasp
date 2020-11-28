@@ -63,3 +63,5 @@ ET17hGmqeYRFwQQpowr5itTCLI1rmwbRrwnFODGsLgll+fb0FE+oW91yVeTIiPgi\n\
 Wh57PLI+b05j8b2g3Vw9guvorqZdFiouVxvRNP1joggAKi+K7U5f1niSOBY=\n\
 -----END RSA PRIVATE KEY-----"
 
+# rsa_public_key=open("rsa_public.pub","r").read()
+# rsa_private_key=open("rsa_private","r").read()
