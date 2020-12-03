@@ -3,10 +3,6 @@ import base64
 import os
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_v1_5 
-
-import Utils
-
-
 class RSACipher(object):
 
     def __init__(self, key):
